@@ -33,35 +33,75 @@
                         <pre>
 [
     {
-        "id": 1,
-        "title": "Zack Snyder's Justice League",
-        "description": "Some description",
-        "genre": "Some genre",
-        "director": "Some director",
-        "image": "http://",
-        "featured": false,
-        "year": 2021
+        "Genre": {
+            "Name": "Thriller",
+            "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves
+            excitement and suspense in the audience."
+        },
+        "Director": {
+            "Name": "Jonathan Demme",
+            "Bio": "Robert Jonathan Demme was an American director, producer, and screenwriter.",
+            "Birth": "1944",
+            "Death": "2017"
+        },
+        "Actors": [],
+        "_id": "6068b46567ec7744394cff31",
+        "Title": "Silence of the Lambs",
+        "Description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help
+        catch another serial killer.",
+        "ImagePath": "https://upload.wikimedia.org/wikipedia/en/8/86/The_Silence_of_the_Lambs_poster.jpg",
+        "Featured": true
     },
+    {
+        "Genre": {
+            "Name": "Thriller",
+            "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves
+            excitement and suspense in the audience."
+        },
+        "Director": {
+            "Name": "Jonathan Demme",
+            "Bio": "Robert Jonathan Demme was an American director, producer, and screenwriter.",
+            "Birth": "1944",
+            "Death": "2017"
+        },
+        "Actors": [],
+        "_id": "6068b46567ec7744394cff32",
+        "Title": "The Manchurian Candidate",
+        "Description": "Major Bennett Marco is a war veteran who commanded a famous U.S. Army raid during the 1991 Gulf War.",
+        "ImagePath":
+        "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/The_Manchurian_Candidate_poster.jpg/220px-The_Manchurian_Candidate_poster.jpg",
+        "Featured": true
+    }
 ]
                         </pre>
                     </td>
                 </tr>
                 <tr>
                     <td>Get details</td>
-                    <td>/movies/:title</td>
+                    <td>/movies/:Title</td>
                     <td>GET</td>
                     <td>None</td>
                     <td>
                         <pre>
 {
-    "id": id,
-    "title": "Zack Snyder's Justice League",
-    "description": "Some description",
-    "genre": "Some genre",
-    "director": "Some director",
-    "image": "http://",
-    "featured": false,
-    "year": 2021
+    "Genre": {
+        "Name": "Thriller",
+        "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves
+        excitement and suspense in the audience."
+    },
+    "Director": {
+        "Name": "Jonathan Demme",
+        "Bio": "Robert Jonathan Demme was an American director, producer, and screenwriter.",
+        "Birth": "1944",
+        "Death": "2017"
+    },
+    "Actors": [],
+    "_id": "6068b46567ec7744394cff31",
+    "Title": "Silence of the Lambs",
+    "Description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help
+    catch another serial killer.",
+    "ImagePath": "https://upload.wikimedia.org/wikipedia/en/8/86/The_Silence_of_the_Lambs_poster.jpg",
+    "Featured": true
 }
                         </pre>
                     </td>
@@ -84,88 +124,164 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td>Get list</td>
+                        <td>/users</td>
+                        <td>GET</td>
+                        <td>None</td>
+                        <td>
+                            <pre>
+[
+    {
+        "FavoriteMovies": [
+            "6068b4cc67ec7744394cff38",
+            "6068b4bc67ec7744394cff36",
+            "6068b46567ec7744394cff32"
+        ],
+        "_id": "6068b6eb689e73f8ed0efbe1",
+        "Username": "davidcohen2580",
+        "Password": "test123",
+        "Email": " davidcohen2580@gmail.com",
+        "Birthday": "1988-09-10T00:00:00.000Z"
+    },
+    {
+        "FavoriteMovies": [
+            "6068b4bc67ec7744394cff36"
+        ],
+        "_id": "6068b792689e73f8ed0efbe2",
+        "Username": "jcortes",
+        "Password": "test123",
+        "Email": "test@email.com",
+        "Birthday": "1976-03-14T00:00:00.000Z"
+    }
+]
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Get details</td>
+                        <td>/users/:Username</td>
+                        <td>GET</td>
+                        <td>None</td>
+                        <td>
+                            <pre>
+{
+    "FavoriteMovies": [
+       "6068b4bc67ec7744394cff36"
+    ],
+    "_id": "6068b792689e73f8ed0efbe2",
+    "Username": "jcortes",
+    "Password": "test123",
+    "Email": "test@email.com",
+    "Birthday": "1976-03-14T00:00:00.000Z"
+}
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Register</td>
-                        <td>/users/add</td>
+                        <td>/users</td>
                         <td>POST</td>
                         <td>
                             <pre>
 {
-    "username": "jcortes",
-    "password": "------",
-    "email": "example@myflix.com",
-    "birthday": "1986-09-06"
+    "username": "jorge.cortes",
+    "password": "123456",
+    "email": "testuser@gmail.comm",
+    "birthday": "09/05/03"
 }
                             </pre>
                         </td>
                         <td>
                             <pre>
 {
-    "id": 1,
-    "username": "jcortes",
-    "password": "------",
-    "email": "example@myflix.com",
-    "birthday": "1986-09-06"
+    "FavoriteMovies": [],
+    "_id": "6068f8c0e25da8378561cb44",
+    "Username": "jorge.cortes",
+    "Password": "123456",
+    "Email": "testuser@gmail.com",
+    "Birthday": "1953-09-05T08:00:00.000Z",
+    "__v": 0
 }
                             </pre>
                         </td>
                     </tr>
                     <tr>
                         <td>Delete</td>
-                        <td>/users/:id</td>
+                        <td>/users/:Username</td>
                         <td>DELETE</td>
                         <td>None</td>
                         <td>
                             <pre>
-{
-    "message": "User removed."
-}
+llopez was deleted
                             </pre>
                         </td>
                     </tr>
                     <tr>
                         <td>Update</td>
-                        <td>/users/:id</td>
+                        <td>/users/:Username</td>
                         <td>PUT</td>
                         <td>
                             <pre>
 {
-    "username": "jcortes",
-    "password": "------",
-    "email": "example@myflix.com",
-    "birthday": "1986-09-06"
+    "Username": "jorge.cortes",
+    "Password": "123456",
+    "Email": "updated@gmail.com",
+    "Birthday": "09/05/53"
 }
                             </pre>
                         </td>
                         <td>
                             <pre>
 {
-    "message": "User updated."
+    "FavoriteMovies": [],
+    "_id": "6068f8c0e25da8378561cb44",
+    "Username": "jorge.cortes",
+    "Password": "123456",
+    "Email": "updated@gmail.com",
+    "Birthday": "1953-09-05T08:00:00.000Z",
+    "__v": 0
 }
                             </pre>
                         </td>
                     </tr>
                     <tr>
                         <td>Add favorite movie</td>
-                        <td>/users/:id/movies/:id/lists/:id/add</td>
+                        <td>/users/:Username/movies/:MovieID</td>
                         <td>POST</td>
                         <td>None</td>
                         <td>
                             <pre>
 {
-    "message": "Movie added."
+    "FavoriteMovies": [
+        "6068b46567ec7744394cff32"
+    ],
+    "_id": "6068f8c0e25da8378561cb44",
+    "Username": "jorge.cortes",
+    "Password": "123456",
+    "Email": "updated@gmail.com",
+    "Birthday": "1953-09-05T08:00:00.000Z",
+    "__v": 0
 }
                             </pre>
                         </td>
                     </tr>
                     <tr>
                         <td>Remove favorite movie</td>
-                        <td>/users/:id/movies/:id/lists/:id</td>
-                        <td>DELETE</td>
+                        <td>/users/:Username/movies/:MovieID</td>
+                        <td>PUT</td>
                         <td>None</td>
                         <td>
                             <pre>
 {
-    "message": "Movie removed."
+    "FavoriteMovies": [
+        "6068b4bc67ec7744394cff36",
+        "6068b46567ec7744394cff32"
+    ],
+    "_id": "6068b6eb689e73f8ed0efbe1",
+    "Username": "davidcohen2580",
+    "Password": "test123",
+    "Email": " davidcohen2580@gmail.com",
+    "Birthday": "1988-09-10T00:00:00.000Z"
 }
                             </pre>
                         </td>
@@ -189,14 +305,15 @@
                 <tbody>
                     <tr>
                         <td>Get details</td>
-                        <td>/genres/:name</td>
+                        <td>/genres/:Name</td>
                         <td>GET</td>
                         <td>None</td>
                         <td>
                             <pre>
 {
-    "id": 1,
-    "name": "Thriller"
+    "Name": "Thriller",
+    "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves
+    excitement and suspense in the audience."
 }
                             </pre>
                         </td>
@@ -220,17 +337,17 @@
                 <tbody>
                     <tr>
                         <td>Get details</td>
-                        <td>/directors/:name</td>
+                        <td>/directors/:Name</td>
                         <td>GET</td>
                         <td>None</td>
                         <td>
                             <pre>
 {
-    "id": 1,
-    "bio": "Lorem Ipsum",
-    "birth_year": 1789,
-    "death_year": 1849
- }
+    "Name": "Jonathan Demme",
+    "Bio": "Robert Jonathan Demme was an American director, producer, and screenwriter.",
+    "Birth": "1944",
+    "Death": "2017"
+}
                             </pre>
                         </td>
                     </tr>
