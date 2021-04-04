@@ -206,6 +206,29 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Login</td>
+                        <td>/login?Username=[username]&Password=[password]</td>
+                        <td>POST</td>
+                        <td>None</td>
+                        <td>
+                            <pre>
+{
+    "user": {
+        "FavoriteMovies": [],
+        "_id": "6069f14702f1ca688fcd3ed8",
+        "Username": "anonymous",
+        "Password": "secret",
+        "Email": "anonymous@gmail.com",
+        "Birthday": "1956-02-14T00:00:00.000Z",
+        "__v": 0
+    },
+    "token":
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJGYXZvcml0ZU1vdmllcyI6W10sIl9pZCI6IjYwNjlmMTQ3MDJmMWNhNjg4ZmNkM2VkOCIsIlVzZXJuYW1lIjoiYW5vbnltb3VzIiwiUGFzc3dvcmQiOiJzZWNyZXQiLCJFbWFpbCI6ImFub255bW91c0BnbWFpbC5jb20iLCJCaXJ0aGRheSI6IjE5NTYtMDItMTRUMDA6MDA6MDAuMDAwWiIsIl9fdiI6MCwiaWF0IjoxNjE3NTU1ODkxLCJleHAiOjE2MTgxNjA2OTEsInN1YiI6ImFub255bW91cyJ9.siqAoZMm_lrEeyql3Oq-iEpX4JoHm9pRdaWYoQTgrz0"
+}
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Delete</td>
                         <td>/users/:Username</td>
                         <td>DELETE</td>

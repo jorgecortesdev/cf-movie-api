@@ -2,17 +2,26 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const Models = require('./models');
+const passport = require('passport');
+
+require('./passport');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(morgan('common'));
 app.use(express.static('public'));
 
+let auth = require('./auth')(app);
+
+const Models = require('./models');
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect('mongodb://localhost:27017/myFlixDB', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+});
 
 /**
  * Home route.
@@ -24,7 +33,7 @@ app.get('/', (req, res) => {
 /**
  * Movies routes
  */
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
     Movies.find()
         .then(movies => {
             res.json(movies)
@@ -35,14 +44,14 @@ app.get('/movies', (req, res) => {
         });
 });
 
-app.get('/movies/:Title', (req, res) => {
+app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
     Movies.find({'Title': req.params.Title}).then(movies => res.json(movies));
 });
 
 /**
  * Users routes
  */
-app.get('/users', (req, res) => {
+app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
     Users.find()
         .then(users => {
             res.status(201).json(users);
@@ -76,7 +85,7 @@ app.post('/users', (req, res) => {
         });
 });
 
-app.get('/users/:Username', (req, res) => {
+app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
     Users.findOne({Username: req.params.Username})
         .then(user => {
             res.json(user);
@@ -87,7 +96,7 @@ app.get('/users/:Username', (req, res) => {
         });
 });
 
-app.put('/users/:Username', (req, res) => {
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
     Users.findOneAndUpdate(
         {'Username': req.params.Username}, {
             $set: {
@@ -110,7 +119,7 @@ app.put('/users/:Username', (req, res) => {
     )
 });
 
-app.delete('/users/:Username', (req, res) => {
+app.delete('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
     Users.findOneAndRemove({Username: req.params.Username})
         .then(user => {
             if (!user) {
@@ -125,7 +134,7 @@ app.delete('/users/:Username', (req, res) => {
         });
 });
 
-app.post('/users/:Username/movies/:MovieID', (req, res) => {
+app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
     Users.findOneAndUpdate(
         {Username: req.params.Username}, {
             $push: {FavoriteMovies: req.params.MovieID}
@@ -142,7 +151,7 @@ app.post('/users/:Username/movies/:MovieID', (req, res) => {
         });
 });
 
-app.put('/users/:Username/movies/:MovieID', (req, res) => {
+app.put('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
     Users.findOneAndUpdate(
         { Username: req.params.Username }, {
             $pull: { FavoriteMovies: req.params.MovieID }
@@ -162,7 +171,7 @@ app.put('/users/:Username/movies/:MovieID', (req, res) => {
 /**
  * Genres
  */
-app.get('/genres/:Name', (req, res) => {
+app.get('/genres/:Name', passport.authenticate('jwt', { session: false }), (req, res) => {
     Movies.findOne({'Genre.Name': req.params.Name})
         .then(movie => {
             res.json(movie.Genre);
@@ -176,7 +185,7 @@ app.get('/genres/:Name', (req, res) => {
 /**
  * Directors
  */
-app.get('/directors/:Name', (req, res) => {
+app.get('/directors/:Name', passport.authenticate('jwt', { session: false }), (req, res) => {
     Movies.findOne({ 'Director.Name': req.params.Name })
         .then(movie => {
             res.json(movie.Director);
