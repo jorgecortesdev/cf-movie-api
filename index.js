@@ -6,6 +6,8 @@ const passport = require('passport');
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
 
+require('dotenv').config();
+
 require('./passport');
 
 const app = express();
@@ -32,7 +34,8 @@ const Models = require('./models');
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect('mongodb://localhost:27017/myFlixDB', {
+console.log(process.env.CONNECTION_URI);
+mongoose.connect(process.env.CONNECTION_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
