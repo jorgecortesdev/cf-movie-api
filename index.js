@@ -118,10 +118,10 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (r
 
 app.patch('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
     let data = {};
-    if (req.body.Username != '') data.Username = req.body.Username;
-    if (req.body.Password != '') data.Password = Users.hashPassword(req.body.Password);
-    if (req.body.Email != '') data.Email = req.body.Email;
-    if (req.body.Birthday != '') data.Birthday = req.body.Birthday;
+    if (req.body.Username) data.Username = req.body.Username;
+    if (req.body.Password) data.Password = Users.hashPassword(req.body.Password);
+    if (req.body.Email) data.Email = req.body.Email;
+    if (req.body.Birthday) data.Birthday = req.body.Birthday;
 
     Users.findOneAndUpdate(
         {'Username': req.params.Username}, {
