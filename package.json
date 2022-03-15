@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xorth/movie-api.git"
+    "url": "git+https://github.com/jorgecortesdev/movie-api.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/xorth/movie-api/issues"
+    "url": "https://github.com/jorgecortesdev/movie-api/issues"
   },
-  "homepage": "https://github.com/xorth/movie-api#readme",
+  "homepage": "https://github.com/jorgecortesdev/movie-api#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
